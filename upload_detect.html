@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Video for Detection</title>
+    <style>
+        /* General Page Styling */
+        body { 
+            font-family: 'Arial', sans-serif; 
+            text-align: center; 
+            background: linear-gradient(to right, #141e30, #243b55); 
+            color: white; 
+            margin: 0; 
+            padding: 0;
+        }
+
+        .container { 
+            max-width: 500px; 
+            margin: 100px auto; 
+            background: rgba(255, 255, 255, 0.1); 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); 
+        }
+
+        h2 { 
+            color: #fff; 
+            font-size: 24px;
+        }
+
+        input[type="file"] { 
+            width: 100%; 
+            padding: 10px; 
+            border: none; 
+            border-radius: 5px; 
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        input[type="file"]::-webkit-file-upload-button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        input[type="file"]::-webkit-file-upload-button:hover {
+            background: #0056b3;
+        }
+
+        .btn {
+            width: 100%; 
+            padding: 12px; 
+            background: #007BFF; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn:hover { 
+            background: transparent; 
+            border: 2px solid #007BFF;
+            color: #007BFF; 
+        }
+
+        /* Result Styling */
+        .result {
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+            h2 {
+                font-size: 22px;
+            }
+            .btn {
+                width: 100%;
+                display: block;
+                margin: 10px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Upload Video for Accident Detection</h2>
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Start Detection 🚀</button>
+        </form>
+
+        {% if result %}
+            <h3>Result:</h3>
+            <p>{{ result }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

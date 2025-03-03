@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accident Detection - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin-top: 50px;
+            opacity: 0;
+            transition: opacity 1s ease-in;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        h2 { color: #333; }
+        pre {
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+        .alert {
+            color: red;
+            font-weight: bold;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.body.style.opacity = "1";
+            const buttons = document.querySelectorAll(".btn");
+            buttons.forEach(button => {
+                button.addEventListener("click", function() {
+                    this.style.transform = "scale(0.95)";
+                    setTimeout(() => this.style.transform = "scale(1)", 150);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Accident Detection System</h2>
+
+        {% if accident_report %}
+            <p class="alert">🚨 Accident Report Found:</p>
+            <pre>{{ accident_report }}</pre>
+        {% else %}
+            <p> </p>
+        {% endif %}
+
+        <a href="{% url 'register' %}" class="btn">Register</a>
+        <a href="{% url 'login' %}" class="btn">Login</a>
+    </div>
+</body>
+</html>
